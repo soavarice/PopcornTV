@@ -436,9 +436,9 @@ function generateSettingsXML(UDID, commit, callback){
                                 .startElement('items')
                                     .startElement('oneLineMenuItem')
                                         .writeAttribute('id', 'tvendpoint')
-                                        .writeAttribute('onSelect', "toggleSetting('tvendpoint', '" + (settings.tvendpoint || 'popcornwvnbg7jev.onion.to') + "')")
+                                        .writeAttribute('onSelect', "toggleSetting('tvendpoint', '" + (settings.tvendpoint || 'popcorntime.ws/api/eztv/') + "')")
                                         .writeElement('label', 'TV API Endpoint')
-                                        .writeElement('rightLabel', settings.tvendpoint || 'popcornwvnbg7jev.onion.to')
+                                        .writeElement('rightLabel', settings.tvendpoint || 'popcorntime.ws/api/eztv/')
                                     .endElement();
 
                                     xw.endDocument();
