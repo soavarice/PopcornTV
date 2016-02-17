@@ -88,7 +88,7 @@ function toggleSetting(setting, curSetting)
     if (curSetting == 'api-fetch.website/tv/'){
       var newSetting = 'popcornwvnbg7jev.onion.to';
     } else {
-      var newSetting = 'https://api-fetch.website/tv';
+      var newSetting = 'api-fetch.website/tv/';
     }
   }
   // read new XML
