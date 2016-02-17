@@ -3,7 +3,7 @@ var logger = require("./logger");
 function getMovies(page, sort_by, amount, callback) {
 	var request = require("request")
 
-	var url = "http://62.210.81.37/api/v2/list_movies.json?sort_by=" + sort_by + "&limit=" + amount + "&page=" + page;
+	var url = " https://api-fetch.website/movies/api/v2/list_movies.json?sort_by=" + sort_by + "&limit=" + amount + "&page=" + page;
 	logger.Debug("=== Getting Movies ===");
 	logger.Debug(url);
 	request({
@@ -15,7 +15,7 @@ function getMovies(page, sort_by, amount, callback) {
 	        logger.Debug(movies);
 	        callback(movies);
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
@@ -24,7 +24,7 @@ function getMoviesGenre(genre, amount, callback) {
 	var page = 1;
 	var request = require("request")
 
-	var url = "http://62.210.81.37/api/v2/list_movies.json?genre=" + genre + "&limit=" + amount + '&sort_by=seeds';
+	var url = " https://api-fetch.website/movies/api/v2/list_movies.json?genre=" + genre + "&limit=" + amount + '&sort_by=seeds';
 	logger.Debug("=== Getting Movies via Genre ===");
 	logger.Debug(url);
 	request({
@@ -36,7 +36,7 @@ function getMoviesGenre(genre, amount, callback) {
 	        logger.Debug(movies);
 	        callback(movies);
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
@@ -45,7 +45,7 @@ function getMovieWithFanart(torrentID, resolution, callback) {
 	var page = 1;
 	var request = require("request")
 
-	var url = "http://62.210.81.37/api/v2/movie_details.json?with_images=true&with_cast=true&movie_id=" + torrentID;
+	var url = " https://api-fetch.website/movies/api/v2/movie_details.json?with_images=true&with_cast=true&movie_id=" + torrentID;
 	logger.Debug("=== Getting Movie ===");
 	logger.Debug(url);
 	request({
@@ -65,7 +65,7 @@ function getMovieWithFanart(torrentID, resolution, callback) {
 	        	callback(movie, 'thumbnails/Background_blank_1080.jpg');
 	        }
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
@@ -74,7 +74,7 @@ function getMovie(torrentID, callback) {
 	var page = 1;
 	var request = require("request")
 
-	var url = "http://62.210.81.37/api/v2/movie_details.json?with_images=true&with_cast=true&movie_id=" + torrentID;
+	var url = " https://api-fetch.website/movies/api/v2/movie_details.json?with_images=true&with_cast=true&movie_id=" + torrentID;
 	logger.Debug("=== Getting Movie ===");
 	logger.Debug(url);
 	request({
@@ -86,7 +86,7 @@ function getMovie(torrentID, callback) {
 	        logger.Debug(movie);
 			callback(movie);
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
@@ -95,7 +95,7 @@ function searchMovies(query, callback) {
 	var page = 1;
 	var request = require("request")
 
-	var url = "http://62.210.81.37/api/v2/list_movies.json?sort_by=seeds&query_term=" + query;
+	var url = " https://api-fetch.website/movies/api/v2/list_movies.json?sort_by=seeds&query_term=" + query;
 	logger.Debug("=== Searching Movies ===");
 	logger.Debug(url);
 	request({
@@ -107,7 +107,7 @@ function searchMovies(query, callback) {
 	        logger.Debug(movies);
 	        callback(movies);
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
@@ -141,7 +141,7 @@ function getRelatedMovies(movie_id, callback) {
 	var page = 1;
 	var request = require("request")
 
-	var url = "http://62.210.81.37/api/v2/movie_suggestions.json?movie_id=" + movie_id;
+	var url = " https://api-fetch.website/movies/api/v2/movie_suggestions.json?movie_id=" + movie_id;
 	logger.Debug("=== Getting Related Movies ===");
 	logger.Debug(url);
 	request({
@@ -153,14 +153,14 @@ function getRelatedMovies(movie_id, callback) {
 	        logger.Debug(movies);
 	        callback(movies);
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
 }
 function generateScreenSaverJSON(callback){
 	var request = require("request")
-	var url = "http://62.210.81.37/api/v2/list_movies.json?sort_by=seeds&limit=50";
+	var url = " https://api-fetch.website/movies/api/v2/list_movies.json?sort_by=seeds&limit=50";
 	logger.Debug("=== Getting Movies ===");
 	logger.Debug(url);
 
@@ -186,7 +186,7 @@ function generateScreenSaverJSON(callback){
 	        logger.Debug(json);
 	        callback(JSON.stringify(json));
 	    } else {
-			logger.warning("Error connecting to yts.to and grabbing json: " + url);
+			logger.warning("Error connecting to api-fetch and grabbing json: " + url);
 			return;
 	    }
 	})
