@@ -1,4 +1,4 @@
-# 31.01.2016 Fix with current working APIs for Movies and TVs.
+Miror form @OstlerDev, fix with new official APIs from https://popcorntime.sh/
 
 # What was PopcornTV?
 
