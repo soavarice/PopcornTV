@@ -1,4 +1,4 @@
-Miror form @OstlerDev, fix with new official APIs from https://popcorntime.sh/
+#Miror form @OstlerDev, fix with new official APIs from https://popcorntime.sh/
 
 # What was PopcornTV?
 
