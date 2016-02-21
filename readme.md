@@ -1,4 +1,6 @@
-#Miror form @OstlerDev, fix with new official APIs from https://popcorntime.sh/
+#TVs working again, but movies still dead due to changes to the APIs sites!
+
+#Miror form @OstlerDev
 
 # What was PopcornTV?
 
