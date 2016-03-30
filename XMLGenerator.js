@@ -436,9 +436,9 @@ function generateSettingsXML(UDID, commit, callback){
                                 .startElement('items')
                                     .startElement('oneLineMenuItem')
                                         .writeAttribute('id', 'tvendpoint')
-                                        .writeAttribute('onSelect', "toggleSetting('tvendpoint', '" + (settings.tvendpoint || 'popcornwvnbg7jev.onion.to') + "')")
+                                        .writeAttribute('onSelect', "toggleSetting('tvendpoint', '" + (settings.tvendpoint || 'api-fetch.website/tv/') + "')")
                                         .writeElement('label', 'TV API Endpoint')
-                                        .writeElement('rightLabel', settings.tvendpoint || 'popcornwvnbg7jev.onion.to')
+                                        .writeElement('rightLabel', settings.tvendpoint || 'api-fetch.website/tv/')
                                     .endElement();
 
                                     xw.endDocument();
