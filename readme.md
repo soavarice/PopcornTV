@@ -1,4 +1,6 @@
-#TVs working again, but movies still dead due to changes to the APIs sites!
+#Thanks to JHFreeman for the solution. Movies working again with YTS.ag
+as API. If you cant load movie, get bach a try second or third time. It
+works for me nad JHFreeman.
 
 #Miror form @OstlerDev
 
