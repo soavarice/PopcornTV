@@ -438,7 +438,7 @@ function generateSettingsXML(UDID, commit, callback){
                                         .writeAttribute('id', 'tvendpoint')
                                         .writeAttribute('onSelect', "toggleSetting('tvendpoint', '" + (settings.tvendpoint || 'api-fetch.website/tv/') + "')")
                                         .writeElement('label', 'TV API Endpoint')
-                                        .writeElement('rightLabel', settings.tvendpoint || 'api-fetch.website/tv/')
+                                        .writeElement('rightLabel', settings.tvendpoint || 'popcornwvnbg7jev.onion.to')
                                     .endElement();
 
                                     xw.endDocument();
@@ -931,12 +931,12 @@ function generateMoviePrePlayFanartXML(torrentID, UDID, atvRes, quality, subtitl
                     .writeElement('summary', movie.description_full)
                     .startElement('userRatings')
                         .startElement('starRating')
-                        .writeElement('percentage', movie.rt_audience_score)
+                        .writeElement('percentage', movie.rating)
                         .endElement()
                     .endElement()
                     .startElement('image')
                     .writeAttribute('style', 'moviePoster')
-                    .text(movie.images.large_cover_image)
+                    .text(movie.large_cover_image)
                     .endElement()
                     .writeElement('defaultImage', 'resource://Poster.png')
                     .startElement('table')
@@ -987,7 +987,7 @@ function generateMoviePrePlayFanartXML(torrentID, UDID, atvRes, quality, subtitl
                                     .startElement('items')
                                         .startElement('actionButton')
                                             .writeAttribute('id', 'play')
-                                            .writeAttribute('onSelect', "addUDIDtoQuery('http://trailers.apple.com/Movies/MoviePlay.xml?torrent=" + selectTorrent(movie.torrents, quality) + "&id=" + torrentID + "&title=" + encodeURIComponent(movie.title.replace(/'/g, '')) + "&desc=" + encodeURIComponent(movie.description_full.replace(/'/g, '')) + "&poster=" + movie.images.large_cover_image + '&subtitle=' + subtitle + "')")
+                                            .writeAttribute('onSelect', "addUDIDtoQuery('http://trailers.apple.com/Movies/MoviePlay.xml?torrent=" + selectTorrent(movie.torrents, quality) + "&id=" + torrentID + "&title=" + encodeURIComponent(movie.title.replace(/'/g, '')) + "&desc=" + encodeURIComponent(movie.description_full.replace(/'/g, '')) + "&poster=" + movie.large_cover_image + '&subtitle=' + subtitle + "')")
                                             .writeElement('title', 'Play')
                                             .writeElement('image', 'resource://Play.png')
                                             .writeElement('focusedImage', 'resource://PlayFocused.png')
@@ -1078,7 +1078,7 @@ function generateMoviePrePlayFanartXML(torrentID, UDID, atvRes, quality, subtitl
                                             })
                                         xw.endElement()
                                     .endElement()
-                                    .startElement('menuSection')
+                                    /*.startElement('menuSection')
                                         .startElement('header')
                                             .startElement('textDivider')
                                                 .writeAttribute('alignment', 'left')
@@ -1099,7 +1099,7 @@ function generateMoviePrePlayFanartXML(torrentID, UDID, atvRes, quality, subtitl
                                                 .endElement();
                                             })
                                         xw.endElement()
-                                    .endElement()
+                                    .endElement()*/
                                     .startElement('menuSection')
                                         .startElement('header')
                                             .startElement('textDivider')
@@ -1109,14 +1109,16 @@ function generateMoviePrePlayFanartXML(torrentID, UDID, atvRes, quality, subtitl
                                             .endElement()
                                         .endElement()
                                         .startElement('items');
-                                            movie.actors.forEach(function(actor){
+                                            movie.cast.forEach(function(actor){
                                                 xw.startElement('twoLineMenuItem')
                                                     .writeAttribute('id', actor.name)
                                                     .writeAttribute('accessibilityLabel', actor.name)
                                                     .writeElement('label', actor.name)
-                                                    .writeElement('label2', actor.character_name)
-                                                    .writeElement('image', actor.medium_image)
-                                                    .startElement('preview')
+                                                    .writeElement('label2', actor.character_name);
+                                                    if(actor.url_small_image) {
+                                                    xw.writeElement('image', actor.url_small_image);
+                                                    }
+                                                    xw.startElement('preview')
                                                         .writeElement('link', 'http://trailers.apple.com/extras.xml?query=' + encodeURIComponent(actor.name))
                                                     .endElement()
                                                 .endElement();
@@ -1986,6 +1988,7 @@ function generateFavoritesXML(favorites, callback){
 }
 
 function parseTime(runtime){
+	logger.Debug(runtime);
     var hour = parseInt(Math.floor(runtime)/60)
     var minute = runtime%60
     if (hour == 0){
@@ -1997,6 +2000,7 @@ function parseTime(runtime){
     }
 }
 function parseGenre(genres){
+	logger.Debug(genres);
     if (genres.length == 0){
         return 'No Known Genres';
     }

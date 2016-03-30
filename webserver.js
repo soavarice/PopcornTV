@@ -229,7 +229,7 @@ function startWebServer(localIp) {
         var subs = require('./SubtitleAPI.js');
         logger.Debug('======== Getting Subtitle ========');
         logger.Debug('Default Subtitle Language Defined as: ' + defaultSubtitle);
-          subs.searchMovie({ imdbid: query.imdb, lang: defaultSubtitle}, 'PopcornTV').then(function(subtitle){
+          subs.searchMovie({ imdbid: query.imdb_code, lang: defaultSubtitle}, 'PopcornTV').then(function(subtitle){
             logger.Debug(subtitle);
             if (subtitle != '' && subtitle != '{}' && subtitle != null && subtitle != 'noResult' && subtitle != undefined)
               defaultSubtitle = subtitle[Object.keys(subtitle)[0]].url;
@@ -770,7 +770,7 @@ function convertFile(hash, callback){
   // ffmpeg -re -i test.mkv -max_delay 50000 -map 0  -c copy -c:v libx264 -profile:v baseline -flags -global_header -f segment -segment_time 5 -segment_list_flags +live -segment_wrap 0 -segment_list ../../test/playlist.m3u8  -segment_format mpegts ../../test/segment_%05d.ts
 
   var file = path.join('assets', 'converted', hash);
-  var args = ['-re', '-i', torrentFile, '-max_delay', '50000', '-map', '0', '-c', 'copy', '-c:v', 'libx264', '-profile:v', 'baseline', '-flags', '+global_header', '-f', 'segment', '-segment_time', '3', '-segment_list_flags', '+live', '-segment_wrap', '0', '-segment_list', file + '.m3u8', '-segment_format', 'mpegts', file + '_%05d.ts']
+  var args = ['-re', '-i', torrentFile, '-max_delay', '50000', '-map', '0', '-c', 'copy', '-c:v', 'libx264', '-profile:v', 'baseline', '-flags', '+global_header', '-f', 'segment', '-segment_time', '3', '-segment_list_flags', '+live', '-segment_wrap', '0', '-segment_list', file + '.m3u8', '-segment_format', 'mpegts', file + '_%05d.ts', '-preset', 'ultrafast']
 
   if (fs.existsSync('ffmpeg.exe')){
       ffmpeg = spawn('ffmpeg.exe', args);

@@ -2,7 +2,7 @@ var images = require("ptv-images");
 var logger = require("./logger");
 
 function generateFanart(imdb, resolution, callback) {
-    logger.Debug("=== Generating Fanart ===");
+    logger.Debug("=== Generating Movie Fanart ===");
     var width = 1920;
     var height = 1080;
     if (resolution == '720') {
